@@ -1,7 +1,28 @@
-browserEvents.W.onEvent(browserEvents.KeyEvent.Pressed, function () {
-    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).vy = -150
+function radom_tilemap () {
+    tilemap_list = [
+    tilemap`level1`,
+    tilemap`level4`,
+    tilemap`level6`,
+    tilemap`level8`
+    ]
+}
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    radom_tilemap()
 })
-tiles.setCurrentTilemap(tilemap`level1`)
+browserEvents.W.onEvent(browserEvents.KeyEvent.Pressed, function () {
+    if (mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).vy == 0) {
+        mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).vy = -210
+    }
+})
+let tilemap_list: tiles.TileMapData[] = []
+tilemap_list = [
+tilemap`level1`,
+tilemap`level4`,
+tilemap`level6`,
+tilemap`level8`,
+tilemap`level9`
+]
+tiles.setCurrentTilemap(tilemap_list._pickRandom())
 let statusbar_1 = statusbars.create(20, 0, StatusBarKind.Health)
 let statusbar_2 = statusbars.create(20, 4, StatusBarKind.Health)
 let statusbar_3 = statusbars.create(20, 4, StatusBarKind.Health)
